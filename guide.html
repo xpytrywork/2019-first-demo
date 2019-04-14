@@ -8,28 +8,49 @@
     <title>导航</title>
 </head>
 <body>
-   
+   <main id="main">
+        <div class="wrapper" id="mainContent">
+
+        </div>
+   </main>
     <script>
-        var keys=
-        {
-            0:['Q','W','E','R','T','Y','U','I','O','P'],
-            1:['A','S','D','F','G','H','J','K','L'],
-            2:['Z','X','C','V','B','N','M'],
-            length:3
+        var keys={
+            '0':['q','w','e','r','t','y','u','i','o','p'],
+            '1':['a','s','d','f','g','h','j','k','l'],
+            '2':['z','x','c','v','b','n','m'],
+            'length':3
         }
         var hash=
         {
-            Q:'qq.com',
-            W:'weibo.com',
-            E:'github.com',
-            R:'tianya.com',
-            T:'huya.com',
-            Y:'youku.com',
-            U:'baidu.com',
-            I:undefined,
-            M:'bilibili.com'
+            'q':"qq.com",
+            'w':"weibo.com",
+            'b':"bilibili.com"
         }
-        div1=window.document.createElement('div')
+        //数据结构，keys对应按键，hash对应网址，采用数组存储
+       index=0
+       while(index<keys.length)//0 1 2
+       {
+           index2=0
+           row=keys[index]
+           //keys[0],qwertyuiop
+           //keys[1],asdfghjkl
+           //keys[2],zxcvbnm
+           divInside=document.createElement('div')
+           mainContent.appendChild(divInside)
+           while(index2<row.length)
+           {
+               keyboard=document.createElement('kbd')
+               divInside.appendChild(keyboard)
+               keyboard.textContent=row[index2]//等同于二维数组keys[index][index2]
+               index2=index2+1
+           }
+           index=index+1
+       }
+       document.onkeypress=function(x)
+       {
+           console.log('hi')
+           console.log(x)
+       }
     </script>
 </body>
 </html>
