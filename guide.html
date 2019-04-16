@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="guide.css">
-    <title>导航</title>
+    <title>廖儿的导航页面</title>
 </head>
 <body>
    <main id="main">
@@ -24,33 +24,56 @@
         {
             'q':"qq.com",
             'w':"weibo.com",
-            'b':"bilibili.com"
+            'b':"bilibili.com",
+            'e':'ee.com'
+        }
+        // 取出localstorage中的uuu对应的hash
+        var hashInLocalStorage =JSON.parse(localStorage.getItem('uuu')||'null')
+        if(hashInLocalStorage)
+        {
+            hash=hashInLocalStorage
         }
         //数据结构，keys对应按键，hash对应网址，采用数组存储
-       index=0
-       while(index<keys.length)//0 1 2
-       {
-           index2=0
-           row=keys[index]
-           //keys[0],qwertyuiop
-           //keys[1],asdfghjkl
-           //keys[2],zxcvbnm
-           divInside=document.createElement('div')
-           mainContent.appendChild(divInside)
-           while(index2<row.length)
-           {
-               keyboard=document.createElement('kbd')
-               divInside.appendChild(keyboard)
-               keyboard.textContent=row[index2]//等同于二维数组keys[index][index2]
-               index2=index2+1
-           }
-           index=index+1
-       }
-       document.onkeypress=function(x)
-       {
-           console.log('hi')
-           console.log(x)
-       }
+      index = 0 
+      while(index<keys.length)//index 取 0,1,2
+      {
+          row=keys[index] //row取key[0],key[2],key[2]
+          divInside=document.createElement('div')//创建div
+          divInside.className='row'
+          mainContent.appendChild(divInside)
+          index1=0
+          while(index1<row.length)//创建kbd，button
+          {
+              keyboard=document.createElement('kbd')
+              divInside.appendChild(keyboard)
+              keyboard.className='keyboard'
+              buttonx=document.createElement('button')
+              imgx=document.createElement('img')
+              imgx.src='https://www.'+hash[row[index1]]+'/favicon.ico'
+              spanx=document.createElement('span')
+              keyboard.appendChild(spanx)
+              spanx.textContent=row[index1]
+              keyboard.appendChild(buttonx)
+              keyboard.appendChild(imgx)
+              buttonx.textContent= '编辑'
+              buttonx.id=row[index1]
+              buttonx.onclick=function(y)
+              {
+                z=y.target.id
+                address=prompt("给我一个网址")
+                hash[z]=address
+                localStorage.setItem('uuu',JSON.stringify(hash))//只能存字符串
+              }
+              index1=index1+1
+          }
+          index=index+1;
+      }
+      document.onkeypress=function(x)
+      {
+          key=x.key//寻找用户按下去的键
+          website='http://' + (hash[key])
+          window.open(website)
+      }
     </script>
 </body>
 </html>

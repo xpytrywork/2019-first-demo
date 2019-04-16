@@ -1,32 +1,72 @@
-/* *{
+*{
     padding: 0;
     margin: 0;
     text-decoration: none;
     list-style: none;
-} */
-main
+    color: #c5c5c5;
+}
+#main
 {
+    height: 100vh;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 main>.wrapper
 {
     display: inline-block;
+    background:rgb(255,255,255,0.2);
 } 
-
-kbd
+span
 {
-    border: 1px solid red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+img
+{
+    width: 14px;
+    height:14px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /* border: 1px solid transparent; */
+}
+kbd
+ {
+    width:60px;
+    height:48px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 4px #1a1b1c, 0 0 0 1px #1f2020,0 3px 0 2px #080808;
+    background: -webkit-linear-gradient(top, #292929 0%,#111111 100%);
     display: inline-block;
-    height: 2em;
-    width: 2em;
     text-align: center;
     text-transform: uppercase;
+    position: relative;
 }
-/* #main > div:first-child
+kbd>button
 {
-    margin-left: 20em;
-} */
-/* main>div:nth-child(3)
+    position:absolute;
+    right: 0;
+    bottom:0;
+    display: none;
+}
+kbd:hover>button
 {
-    margin-left: 2em;
-} */
+    display: inline-block;
+}
+.row
+{
+    margin: 14px;
+}
+.keyboard
+{
+    display: inline-block;
+    margin: 8px;
+}
+body
+{
+    background:red url(bg.jpg) no-repeat center center;
+}
