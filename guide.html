@@ -25,7 +25,6 @@
             'q':"qq.com",
             'w':"weibo.com",
             'b':"bilibili.com",
-            'e':'ee.com'
         }
         // 取出localstorage中的uuu对应的hash
         var hashInLocalStorage =JSON.parse(localStorage.getItem('uuu')||'null')
@@ -33,29 +32,43 @@
         {
             hash=hashInLocalStorage
         }
+        // 第一部分初始化数据
+
         //数据结构，keys对应按键，hash对应网址，采用数组存储
       index = 0 
       while(index<keys.length)//index 取 0,1,2
       {
-          row=keys[index] //row取key[0],key[2],key[2]
-          divInside=document.createElement('div')//创建div
+          var row=keys[index] //row取key[0],key[2],key[2]
+          var divInside=document.createElement('div')//创建div
           divInside.className='row'
           mainContent.appendChild(divInside)
-          index1=0
+          var index1=0
           while(index1<row.length)//创建kbd，button
           {
-              keyboard=document.createElement('kbd')
+              var keyboard=document.createElement('kbd')
               divInside.appendChild(keyboard)
               keyboard.className='keyboard'
               buttonx=document.createElement('button')
-              imgx=document.createElement('img')
-              imgx.src='https://www.'+hash[row[index1]]+'/favicon.ico'
-              spanx=document.createElement('span')
+              var imgx=document.createElement('img')
+              var spanx=document.createElement('span')
               keyboard.appendChild(spanx)
               spanx.textContent=row[index1]
               keyboard.appendChild(buttonx)
               keyboard.appendChild(imgx)
-              buttonx.textContent= '编辑'
+              if(hash[row[index1]])
+              {
+                imgx.src='https://www.'+hash[row[index1]]+'/favicon.ico'
+              }
+              else
+              {
+                imgx.src='//i.loli.net/2017/11/10/5a05afbc5e183.png'
+              }
+              imgx.onerror=function(xx)
+              {
+                  console.log('你下载失败了')
+                  xx.target.src='//i.loli.net/2017/11/10/5a05afbc5e183.png'
+              }
+              buttonx.textContent= 'edit'
               buttonx.id=row[index1]
               buttonx.onclick=function(y)
               {
@@ -68,12 +81,16 @@
           }
           index=index+1;
       }
+      //第二部分生成键盘
+
+
       document.onkeypress=function(x)
       {
           key=x.key//寻找用户按下去的键
           website='http://' + (hash[key])
           window.open(website)
       }
+      //监听键盘
     </script>
 </body>
 </html>

@@ -27,8 +27,8 @@ span
 }
 img
 {
-    width: 14px;
-    height:14px;
+    width: 16px;
+    height:15px;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -69,4 +69,12 @@ kbd:hover>button
 body
 {
     background:red url(bg.jpg) no-repeat center center;
+}
+button
+{
+    width: 30px;
+    height: 25px;
+    font-size: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    color:black;
 }
